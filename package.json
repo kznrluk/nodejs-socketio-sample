@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-socketio-sample",
+  "version": "1.0.0",
+  "description": "Realtime communication with Socket.io on Nodejs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kznrluk/nodejs-socketio-sample.git"
+  },
+  "author": "@kznr_luk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kznrluk/nodejs-socketio-sample/issues"
+  },
+  "homepage": "https://github.com/kznrluk/nodejs-socketio-sample#readme",
+  "dependencies": {
+    "socketio": "^1.0.0"
+  }
+}
