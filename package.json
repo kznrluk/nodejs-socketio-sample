@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/kznrluk/nodejs-socketio-sample#readme",
   "dependencies": {
+    "request": "^2.83.0",
     "socketio": "^1.0.0"
   }
 }
