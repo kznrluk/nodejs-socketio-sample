@@ -1,36 +1,22 @@
-var server = require('http').createServer(response);
-var io     = require('socket.io')(server);
-var fs     = require('fs');
+const server = require('http').createServer();
+const io     = require('socket.io')(server);
+const fs     = require('fs');
 
-var mp3 = 0;
-fs.readFile('sample.mp3', function(err, data){
-    mp3 = data;
-});
-
-function response(req, res){
-    res.writeHead(200, {'Content-Type':'audio/mp3'});
-    res.write(mp3);
-    res.end();
-
-}
-
-function socketio(socket){
-    socket.on('message', function(data){
-        io.emit('message', data);
-        console.log(data.msg);
-    });
-    socket.on('starttest', function(data){
-        console.log('readfile');
-        var start = (new Date()).getTime();
-        io.emit('mp3data', { 'mp3':mp3, 'start':start } )
-        });
-}
+const FILE_NAME = 'sample.mp3'
 
 process.stdin.setEncoding('utf-8');
-process.stdin.on('data', function(data){
-    io.emit('message', {msg: data});
+
+var binaryData = 0;
+fs.readFile(FILE_NAME, (err, data) => {
+    binaryData = data;
+    console.log('File loaded.');
 });
 
-io.on('connection', socketio);
+io.on('connection', socket => {
+    console.log('Connected.')
+    socket.on('start', data => {
+        io.emit('sendBinaryData', { 'binary': binaryData, 'startTime': (new Date()).getTime() });
+    });
+});
 server.listen(3000);
 console.log('Server started on 3000');
